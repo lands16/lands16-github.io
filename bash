@@ -1,2 +1,2 @@
-git clone https://github.com/yourusername/yourusername.github.io.git
-cd yourusername.github.io
+git clone https://github.com/lands16/lands16.github.io.git
+cd lands16.github.io
