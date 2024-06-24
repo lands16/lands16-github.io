@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Crows Unique Monster Spawn Timer</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .monster { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Night Crows Unique Monster Spawn Timer</h1>
+  <div id="monsters"></div>
+
+  <script>
+    async function fetchUniqueMonsters() {
+      const response = await fetch('monsters.json');
+      const data = await response.json();
+      const container = document.getElementById('monsters');
+      container.innerHTML = data.map(monster => {
+        const spawnTime = new Date(monster.nextSpawnTime);
+        return `
+          <div class="monster">
+            <h2>${monster.name}</h2>
+            <p>Next Spawn: ${spawnTime.toLocaleString()}</p>
+            <p>Time Remaining: ${Math.max(0, Math.round((spawnTime - new Date()) / 1000 / 60))} minutes</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    fetchUniqueMonsters();
+    setInterval(fetchUniqueMonsters, 60000); // Poll every 60 seconds
+  </script>
+</body>
+</html>
