@@ -1,6 +1,6 @@
 [
-  { "id": 1, "name": "Anggolt", "nextSpawnTime": "2024-06-23T14:00:00Z" },
-  { "id": 2, "name": "Kiaron", "nextSpawnTime": "2024-06-23T15:00:00Z" },
-  { "id": 3, "name": "Inferno", "nextSpawnTime": "2024-06-23T16:00:00Z" },
-  { "id": 4, "name": "Grish", "nextSpawnTime": "2024-06-23T17:00:00Z" }
+  { "id": 1, "name": "Anggolt", "lat": 34.0522, "lng": -118.2437, "nextSpawnTime": "2024-06-23T14:00:00Z" },
+  { "id": 2, "name": "Kiaron", "lat": 40.7128, "lng": -74.0060, "nextSpawnTime": "2024-06-23T15:00:00Z" },
+  { "id": 3, "name": "Inferno", "lat": 51.5074, "lng": -0.1278, "nextSpawnTime": "2024-06-23T16:00:00Z" },
+  { "id": 4, "name": "Grish", "lat": 48.8566, "lng": 2.3522, "nextSpawnTime": "2024-06-23T17:00:00Z" }
 ]
