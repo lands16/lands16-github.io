@@ -3,35 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Night Crows Unique Monster Spawn Timer</title>
+  <title>Night Crows Unique Monster Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
     body { font-family: Arial, sans-serif; }
-    .monster { margin-bottom: 20px; }
+    #map { height: 600px; width: 100%; }
   </style>
 </head>
 <body>
   <h1>Night Crows Unique Monster Spawn Timer</h1>
-  <div id="monsters"></div>
-
+  <div id="map"></div>
+  
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
-    async function fetchUniqueMonsters() {
+    const map = L.map('map').setView([20, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    async function fetchMonsters() {
       const response = await fetch('monsters.json');
-      const data = await response.json();
-      const container = document.getElementById('monsters');
-      container.innerHTML = data.map(monster => {
+      const monsters = await response.json();
+      monsters.forEach(monster => {
         const spawnTime = new Date(monster.nextSpawnTime);
-        return `
-          <div class="monster">
-            <h2>${monster.name}</h2>
-            <p>Next Spawn: ${spawnTime.toLocaleString()}</p>
-            <p>Time Remaining: ${Math.max(0, Math.round((spawnTime - new Date()) / 1000 / 60))} minutes</p>
-          </div>
-        `;
-      }).join('');
+        L.marker([monster.lat, monster.lng]).addTo(map)
+          .bindPopup(`<b>${monster.name}</b><br>Next Spawn: ${spawnTime.toLocaleString()}<br>Time Remaining: ${Math.max(0, Math.round((spawnTime - new Date()) / 1000 / 60))} minutes`);
+      });
     }
 
-    fetchUniqueMonsters();
-    setInterval(fetchUniqueMonsters, 60000); // Poll every 60 seconds
+    fetchMonsters();
+    setInterval(fetchMonsters, 60000); // Refresh every 60 seconds
   </script>
 </body>
 </html>
