@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Anggolt", "nextSpawnTime": "2024-06-23T14:00:00Z" },
+  { "id": 2, "name": "Kiaron", "nextSpawnTime": "2024-06-23T15:00:00Z" },
+  { "id": 3, "name": "Inferno", "nextSpawnTime": "2024-06-23T16:00:00Z" },
+  { "id": 4, "name": "Grish", "nextSpawnTime": "2024-06-23T17:00:00Z" }
+]
