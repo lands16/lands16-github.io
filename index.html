@@ -13,14 +13,16 @@
 <body>
   <h1>Night Crows Unique Monster Spawn Timer</h1>
   <div id="map"></div>
-  
+
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([20, 0], 2);
+    const map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -5
+    }).setView([0, 0], 0);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    const bounds = [[-512, -512], [512, 512]];
+    const image = L.imageOverlay('battlefront-map.jpg', bounds).addTo(map);
 
     async function fetchMonsters() {
       const response = await fetch('monsters.json');
